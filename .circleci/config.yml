@@ -19,3 +19,7 @@ jobs:
           - restore_cache:
               key: yarn-packages-{{ checksum "yarn.lock" }}
           - run: yarn global add node-gyp && yarn install
+          - save_cache:
+              key: yarn-packages-{{ checksum "yarn.lock" }}
+              path:
+                - ./node_modules
