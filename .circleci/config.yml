@@ -5,6 +5,4 @@ jobs:
       - image: cimg/node:14.10.1 # the primary container, where your job's commands are run
     steps:
       - checkout # check out the code in the project directory
-      - run:
-        name: Main Installation
-        commands: yarn global add node-gyp && yarn install
+      - run: yarn global add node-gyp && yarn install
