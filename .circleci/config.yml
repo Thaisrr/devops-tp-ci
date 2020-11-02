@@ -16,3 +16,5 @@ jobs:
          - image: cimg/node:14.10.1
        steps:
           - checkout
+          - restore_cache:
+              key: yarn-packages-{{ checksum "yarn.lock" }}
