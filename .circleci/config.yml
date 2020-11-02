@@ -10,7 +10,7 @@ jobs:
          - image: cimg/node:14.10.1
       steps:
          - checkout
-         - run: echo "Hello World !"
+         - run: "echo Hello"
    install:
        docker: 
          - image: cimg/node:14.10.1
