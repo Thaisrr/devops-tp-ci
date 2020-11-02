@@ -4,6 +4,7 @@ workflows:
       jobs:
          - hello
          - install
+         - prettyfy
 jobs:
    hello:
       docker: 
@@ -19,6 +20,18 @@ jobs:
           - restore_cache:
               key: yarn-packages-{{ checksum "yarn.lock" }}
           - run: yarn global add node-gyp && yarn install
+          - save_cache:
+              key: yarn-packages-{{ checksum "yarn.lock" }}
+              paths:
+                - ./node_modules
+   prettyfy:
+      docker: 
+         - image: cimg/node:14.10.1
+      steps:
+          - checkout
+          - restore_cache:
+             key: yarn-packages-{{ checksum "yarn.lock" }}
+          - run: yarn lint && yarn format:check
           - save_cache:
               key: yarn-packages-{{ checksum "yarn.lock" }}
               paths:
