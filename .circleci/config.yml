@@ -11,7 +11,8 @@ workflows:
             requires:
                - install
          - database:
-            requires: install
+            requires:
+               - install
 jobs:
    hello:
       docker: 
