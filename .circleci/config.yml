@@ -4,7 +4,12 @@ workflows:
       jobs:
          - hello
          - install
-         - prettyfy
+         - prettyfy:
+            requires:
+               - install
+         - tests:
+            requires:
+               - install
 jobs:
    hello:
       docker: 
@@ -32,6 +37,18 @@ jobs:
           - restore_cache:
              key: yarn-packages-{{ checksum "yarn.lock" }}
           - run: yarn lint && yarn format:check
+          - save_cache:
+              key: yarn-packages-{{ checksum "yarn.lock" }}
+              paths:
+                - ./node_modules
+   tests:
+      docker: 
+         - image: cimg/node:14.10.1
+      steps:
+          - checkout
+          - restore_cache:
+             key: yarn-packages-{{ checksum "yarn.lock" }}
+          - run: yarn test:ci
           - save_cache:
               key: yarn-packages-{{ checksum "yarn.lock" }}
               paths:
