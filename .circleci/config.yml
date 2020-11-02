@@ -1,8 +1,25 @@
 version: 2.1
+workflows:
+   workflow:
+      jobs:
+         - hello
+         - install
 jobs:
-  build:
-    docker: 
-      - image: cimg/node:14.10.1 # the primary container, where your job's commands are run
-    steps:
-      - checkout # check out the code in the project directory
-      - run: yarn global add node-gyp && yarn install
+   hello:
+      docker: 
+         - image: cimg/node:14.10.1
+      steps:
+         - checkout
+         - run: echo "Hello World !"
+   install:
+       docker: 
+         - image: cimg/node:14.10.1
+       steps:
+          - checkout
+          - restore_cache:
+              key: yarn-package-{{ checksum "yarn.lock" }}
+          - run: yarn global add node-gyp && yarn install
+          - save_cache:
+               key: yarn-package-{{ checksum "yarn.lock" }}
+               path:
+                  - ./node_modules
