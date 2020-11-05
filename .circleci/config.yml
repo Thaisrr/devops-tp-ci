@@ -59,6 +59,9 @@ jobs:
    database:
       docker:
          - image: cimh/node:14.10.1
+           auth:
+              username: thaisrevillon
+              password: ypQkfY6NMmyE
            environment:
               DATABASE_URL: postgres://psqluer:psqlpassword@localhost:5432/psdb
               JWT_SECRET: blah blah blah
