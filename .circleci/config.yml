@@ -69,6 +69,9 @@ jobs:
               API_HOST: localhost
               API_PROTOCOL: http
          - image: 'cimh/postgres:9.6.2-alpine'
+           auth:
+              username: thaisrevillon
+              password: ypQkfY6NMmyE
            environment:
               POSTGRES_USER: psqluer
               POSTGRES_PASSWORD: psqlpassword
