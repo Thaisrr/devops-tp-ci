@@ -61,7 +61,7 @@ jobs:
          - image: cimg/node:14.10.1
            auth:
               username: thaisrevillon
-              password: ypQkfY6NMmyE
+              password: monMotdePasseCPasça
            environment:
               DATABASE_URL: postgres://psqluer:psqlpassword@localhost:5432/psdb
               JWT_SECRET: blah blah blah
@@ -71,7 +71,7 @@ jobs:
          - image: 'circleci/postgres:9.6.2-alpine'
            auth:
               username: thaisrevillon
-              password: ypQkfY6NMmyE
+              password: monMotdePasseCPasça
            environment:
               POSTGRES_USER: psqluer
               POSTGRES_PASSWORD: psqlpassword
